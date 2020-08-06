@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import TaskPage from "./components/TaskPage";
 import { editTask, createTask, removeTask } from "./actions";
-
+import Login from "./components/login";
+import Register from "./components/register";
+import "./components/style.scss"
+import "./App.scss"
 
 
 function App(props) {
@@ -24,6 +27,9 @@ function App(props) {
 
   return (
     <>
+      {/* <Login/> */}
+      <Login />
+      <Register/>
       <TaskPage
         tasks={props.tasks}
         onStatusChange={onStatusChange}
