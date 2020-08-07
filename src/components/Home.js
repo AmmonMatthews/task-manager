@@ -1,12 +1,9 @@
 import React from 'react';
 import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
-import TaskPage from "./components/TaskPage";
-import { editTask, createTask, removeTask } from "./actions";
-import Login from "./components/login";
-import Register from "./components/register";
-import "./components/style.scss"
-import "./App.scss"
+import TaskPage from "./TaskPage";
+import { editTask, createTask, removeTask } from "../actions";
+import "../styles/index.scss"
 
 
 function Home(props) {
@@ -28,8 +25,6 @@ function Home(props) {
     return (
         <>
             {/* <Login/> */}
-            <Login />
-            <Register />
             <TaskPage
                 tasks={props.tasks}
                 onStatusChange={onStatusChange}
