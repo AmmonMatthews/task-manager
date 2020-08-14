@@ -2,26 +2,26 @@ import {
     LOGIN_START,
     LOGIN_SUCCESS,
     LOGIN_FAIL
-} from "./types";
+} from "../actions/types";
 import {
     REGISTER_START,
     REGISTER_SUCCESS,
     REGISTER_FAIL
-} from "./types";
+} from "../actions/types";
 
 import jwt from "jsonwebtoken";
 import cookie from "js-cookie";
 
 const initialState = {
     user: "", //jwt.decode(cookie.get("token")),
-    isLoggedIn: false, 
+    isLoggedIn: false,
     isSignedUp: false,
     isLoading: true,
-    error:""
+    error: ""
 }
 
 export const authReducer = (state = initialState, action) => {
-    switch (action.type){
+    switch (action.type) {
         case LOGIN_START:
             return {
                 ...state,
@@ -42,5 +42,5 @@ export const authReducer = (state = initialState, action) => {
             }
         default:
             return state;
-        }
     }
+}

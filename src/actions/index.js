@@ -44,5 +44,11 @@ export const removeTask = (id) => {
 export const getLoggedIn = cred => dispatch => {
     dispatch({ type: LOGIN_START })
     return axios
-    .post("")
+        .post("https://task-7.herokuapp.com/auth/login", cred, { withCredentials: true })
+        .then((response) => {
+            console.log(response)
+        })
+        .catch(err => {
+            console.log(err)
+        })
 }
