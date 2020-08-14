@@ -42,7 +42,8 @@ export const getLoggedIn = (cred) => (dispatch) => {
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response);
+          console.log(response);
+          localStorage.setItem("id", response.data.id);
         dispatch({ type: LOGIN_SUCCESS, payload: response });
       })
       .catch((err) => {
