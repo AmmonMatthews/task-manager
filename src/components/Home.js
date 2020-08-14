@@ -37,7 +37,7 @@ function Home(props) {
 
 const mapStateToProps = state => {
     return {
-        tasks: state.tasks,
+        tasks: state.tasks.tasks
     };
 };
 

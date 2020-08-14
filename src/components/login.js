@@ -20,17 +20,12 @@ function Login(props) {
     const handleSubmit = (e) => {
         // console.log("this happens first")
         e.preventDefault()
+        props.getLoggedIn(state)
+        setState(initialState)
+        props.history.push("/dashboard")
         // console.log("this happens second")
-        axios
-            .post("http://localhost:5000/auth/login", state, { withCredentials: true })
-            // .post("https://task-7.herokuapp.com/auth/login", state, { withCredentials: true })
-            .then(res => {
-                console.log("this is the response", res)
-            })
-            .catch(err => {
-                console.log("This is the error", err)
-            })
-        // axios.get("http://localhost:5000/")
+        // axios
+        //     .post("http://localhost:5000/auth/login", state, { withCredentials: true })
         //     // .post("https://task-7.herokuapp.com/auth/login", state, { withCredentials: true })
         //     .then(res => {
         //         console.log("this is the response", res)
@@ -38,9 +33,6 @@ function Login(props) {
         //     .catch(err => {
         //         console.log("This is the error", err)
         //     })
-        // console.log("this happens last")
-        // props.getLoggedIn(state)
-        // .then(() => props.history.push("/dashboard"))
     }
 
     return (
