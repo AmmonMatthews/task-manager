@@ -11,7 +11,7 @@ const initialState = {
 
 function Login(props) {
     const [state, setState] = useState(initialState)
-
+    const [id, setId] = useState([])
     const handleChange = e => {
         setState({ ...state, [e.target.name]: e.target.value })
 
@@ -22,7 +22,7 @@ function Login(props) {
         e.preventDefault()
         props.getLoggedIn(state)
         setState(initialState)
-        props.history.push("/dashboard")
+        window.setTimeout(() => { props.history.push(`/dashboard`) }, 500)
         // console.log("this happens second")
         // axios
         //     .post("http://localhost:5000/auth/login", state, { withCredentials: true })

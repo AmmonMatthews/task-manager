@@ -4,6 +4,8 @@ import { REGISTER_START, REGISTER_SUCCESS, REGISTER_FAIL } from "./types";
 import axios from "axios";
 import uuid from "react-uuid";
 
+
+
 export const editTask = (id, params = {}) => {
   return {
     type: EDIT_TASK,
@@ -32,6 +34,7 @@ export const removeTask = (id) => {
     id,
   };
 };
+
 
 export const getLoggedIn = (cred) => (dispatch) => {
   dispatch({ type: LOGIN_START });
