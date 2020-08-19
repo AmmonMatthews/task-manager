@@ -10,12 +10,15 @@ import "../styles/index.scss"
 
 
 function Home(props) {
-    const [state, setState] = useState() 
+    const [tasks, setTasks] = useState([])
 
     useEffect(() => {
+        const user_id = localStorage.getItem("id")
+
         axiosWithAuth()
-            .get("/api/tasks")
+            .get(`/api/${user_id}/tasks`)
             .then(res => {
+                setTasks(res.data)
                 console.log("response", res)
             })
             .catch(err => { 
@@ -25,13 +28,13 @@ function Home(props) {
     }, [])
     
     const onStatusChange = (id, status) => {
-        props.dispatch(editTask(id, { status }))
+        props.editTask(id, { status })
     }
         ;
 
-    const onCreateTask = ({ title, description }) => {
-        props.dispatch(createTask({ title, description }))
-    };
+    // const onCreateTask = ({ title, description }) => {
+    //     props.dispatch(createTask({ title, description }))
+    // };
 
     const onRemoveTask = (id) => {
         props.dispatch(removeTask(id))
@@ -42,10 +45,10 @@ function Home(props) {
         <>
             {/* <Login/> */}
             <TaskPage
-                tasks={props.tasks}
-                onStatusChange={onStatusChange}
-                onCreateTask={onCreateTask}
-                onRemoveTask={onRemoveTask}
+                tasks={tasks}
+                onStatusChange={props.editTask}
+                onCreateTask={props.createTask}
+                onRemoveTask={props.removeTask}
             />
         </>
     );
@@ -57,4 +60,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, {createTask, editTask, removeTask})(Home);

@@ -22,7 +22,7 @@ function Login(props) {
         e.preventDefault()
         props.getLoggedIn(state)
         setState(initialState)
-        window.setTimeout(() => { props.history.push(`/dashboard`) }, 500)
+        window.setTimeout(() => { props.history.push(`/dashboard`) }, 1000)
         // console.log("this happens second")
         // axios
         //     .post("http://localhost:5000/auth/login", state, { withCredentials: true })

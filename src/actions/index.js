@@ -1,14 +1,20 @@
-import { EDIT_TASK, CREATE_TASK, REMOVE_TASK } from "./types";
+import { EDIT_TASK, REMOVE_TASK } from "./types";
 import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAIL } from "./types";
 import { REGISTER_START, REGISTER_SUCCESS, REGISTER_FAIL } from "./types";
+import {
+  CREATE_TASK_START,
+  CREATE_TASK_SUCCESS,
+  CREATE_TASK_FAILURE
+} from "./types"
 import axios from "axios";
 import uuid from "react-uuid";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 
 
-export const editTask = (id, params = {}) => {
+export const editTask = (id, params = {}) => (dispatch) =>{
+  dispatch({type: EDIT_TASK})
   return {
-    type: EDIT_TASK,
     payload: {
       id,
       params,
@@ -16,16 +22,31 @@ export const editTask = (id, params = {}) => {
   };
 };
 
-export const createTask = ({ title, description }) => {
-  return {
-    type: CREATE_TASK,
-    payload: {
-      id: uuid(),
-      title,
-      description,
-      status: "Unstarted",
-    },
-  };
+export const createTask = ({ title, description }) => (dispatch) => {
+   const user_id = localStorage.getItem("id")
+  const new_task = { title, description }
+  console.log(new_task)
+  return (
+
+    axiosWithAuth()
+      .post(`/api/${user_id}/tasks`, {title, description})
+      .then(res => {
+        dispatch({type: CREATE_TASK_SUCCESS, payload: res})
+        console.log("response", res)
+      })
+      .catch(err => {
+        console.log("error", err)
+        dispatch({type: CREATE_TASK_FAILURE})
+      })
+  )
+  // return {
+  //   payload: {
+  //     id: uuid(),
+  //     title,
+  //     description,
+  //     status: "Unstarted",
+  //   },
+  // };
 };
 
 export const removeTask = (id) => {

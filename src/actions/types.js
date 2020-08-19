@@ -1,5 +1,7 @@
 export const EDIT_TASK = "EDIT_TASK";
-export const CREATE_TASK = "CREATE_TASK";
+export const CREATE_TASK_START = "CREATE_TASK_START";
+export const CREATE_TASK_SUCCESS = "CREATE_TASK_SUCCESS";
+export const CREATE_TASK_FAILURE = "CREATE_TASK_FAILURE";
 export const REMOVE_TASK = "REMOVE_TASK";
 
 export const LOGIN_START = "LOGIN_START";
